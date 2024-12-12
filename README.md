@@ -1,0 +1,3 @@
+This repository demonstrates a common error in Dockerfiles: failing to copy necessary files into the image before attempting to execute them.
+The `Dockerfile_bug` shows the problematic Dockerfile. The `Dockerfile_solution` shows the corrected version which successfully copies the required script.
+The issue arises because the `CMD` instruction tries to execute `/app/my_script.py`, but this file is not present in the image because it was not copied from the build context. The solution is simple: a `COPY` instruction needs to be added to copy the script into the image before the `CMD` instruction.
